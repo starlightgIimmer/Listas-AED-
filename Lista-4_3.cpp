@@ -6,11 +6,11 @@ está no vetor.
 
 using namespace std;
 
-int PesqSeq(int x, int N, int a[])
+int PesqSeq(int val, int N, int a[])
 {
     int i = 0;
     
-    while (i<N && a[i] != x)
+    while (i<N && a[i] != val)
         i++;
     return (i == N) ? -1 : i;
 }
@@ -20,6 +20,8 @@ int main(void)
     int v[m] = {2, 5, 7, 9, 1, 3, 4, 6};
     
     cout<<"Busca de 9 = "<< PesqSeq(9, m, v);
+    cout<<"Busca de 2 = "<< PesqSeq(2, m, v);
+    cout<<"Busca de 8 = "<< PesqSeq(8, m, v)
 
     return 0;
 }
