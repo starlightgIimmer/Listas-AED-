@@ -6,7 +6,7 @@ se não está no vetor.
 
 using namespace std;
 
-int PesqBin(int x, int N, int a[])
+int PesqBin(int val, int N, int a[])
 {
     int L, R, m;
     L = 0;
@@ -14,12 +14,12 @@ int PesqBin(int x, int N, int a[])
     while(L < R)
     {
         m = (L + R) / 2;
-        if(a[m] < x)
+        if(a[m] < val)
             L = m + 1;
         else
             R = m;
     }
-    return (x == a[R] ) ? R : -1;
+    return (val == a[R] ) ? R : -1;
 }
 int main(void)
 {
