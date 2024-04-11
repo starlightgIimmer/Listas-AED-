@@ -3,40 +3,23 @@ um vetor X[N]. A seguir, leia cada um dos valores de X, encontre o maior
 elemento deste vetor e a sua posição dentro do vetor, mostrando esta
 informação.
 
-*a posicao fica 0
-  
 #include <iostream>
 
 using namespace std;
 
-int BuscaMaiorValor(int a[], int m)
+int BuscaMaiorValor(int a[], int tam_vet)
 {
-    int inicio;
-    int fim = m - 1;
-    int maiorValor = a[0];
-    int posicao = 0;
+    int maiorValor = 0;
     
-    while(inicio <= fim)
+    for(int i=0; i<tam_vet; i++)
     {
-        int meio = (inicio + fim) / 2;
-        
-        if(a[meio] > maiorValor)
+        if(a[i]>maiorValor)
         {
-            maiorValor = a[meio];
-            posicao = meio;
-        }
-        
-        if (a[meio] > a[fim]) 
-        {
-            fim = meio - 1;
-        } 
-        else 
-        {
-            inicio = meio + 1;
+            maiorValor = a[i];
         }
     }
-    
-    return posicao;
+
+    return maiorValor;
 }
 
 int main()
