@@ -3,40 +3,23 @@ um vetor X[N]. A seguir, leia cada um dos valores de X, encontre o menor
 elemento deste vetor e a sua posição dentro do vetor, mostrando esta
 informação.
 
-  *ele nao esta achando a posicao correta.
-
-#include <iostream>
+ #include <iostream>
 
 using namespace std;
 
-int BuscaMenorValor(int a[], int m)
+int BuscaMenorValor(int a[], int tam_vet)
 {
-    int inicio;
-    int fim = m - 1;
-    int menorValor = a[0];
-    int posicao = 0;
+    int menorValor = 10000000;
     
-    while(inicio <= fim)
+    for(int i=0; i<tam_vet; i++)
     {
-        int meio = (inicio + fim) / 2;
-        
-        if(a[meio] < menorValor)
+        if(a[i]<menorValor)
         {
-            menorValor = a[meio];
-            posicao = meio;
-        }
-        
-        if (a[meio] < a[fim]) 
-        {
-            fim = meio - 1;
-        } 
-        else 
-        {
-            inicio = meio + 1;
+            menorValor = a[i];
         }
     }
-    
-    return posicao;
+
+    return menorValor;
 }
 
 int main()
@@ -53,8 +36,8 @@ int main()
         cin >> X[i];
     }
     
-    int posicaoMenorValor = BuscaMenorValor(X, N);
-    cout<<"O elemento do vetor que possui menor valor está na posição "<<posicaoMenorValor<<".";
+    int MenorValor = BuscaMenorValor(X, N);
+    cout<<"O elemento do vetor que possui menor valor é "<<MenorValor<<".";
     
     return 0;
 }
