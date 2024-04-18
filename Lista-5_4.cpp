@@ -72,4 +72,5 @@ int main()
     {
         cout << alturas[i] << " metros\n";
     }
+  return 0;
 }
