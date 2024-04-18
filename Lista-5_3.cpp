@@ -7,77 +7,110 @@ float Nota;
 Faça uma função que dado um array de tamanho N dessa estrutura, ordene
 o array pelo campo escolhido pelo usuário. A ordenação deve utilizar o
 método Merge Sort.
-que???
+
 #include <iostream>
-#include <vector>
+#include <string>
 
 using namespace std;
-
-struct pessoa
+    
+struct pessoa 
 {
     int Matricula;
-    char Nome[30];
+    string Nome;
     float Nota;
 };
 
-void merge(struct pessoa arr[], int p, int q, int r, int escolha) 
-{
-    int n1 = q - p + 1;
-    int n2 = r - q;
-    
-    struct pessoa L[n1], R[n2];
-    
-    for(int i = 1; i<n1, i++)
+void merge(pessoa arr[], int l, int m, int r, int opcao) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    pessoa L[n1], R[n2];
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+
+    int i = 0;
+    int j = 0;
+    int k = l;
+
+    while (i < n1 && j < n2) 
     {
-        L[i] = arr[p + i - 1];
-    }
-    
-    for(int j = 1; i<n2; j++)
-    {
-        R[j] = arr[q+j]
-    }
-    
-    i=0;
-    j=0;
-    k = p;
-    
-    while(i < n1 && j < n2)
-    {
-        if (escolha ==1 ? L[i].Matricula<= R[j].Matricula)
+        if (opcao == 1 ? L[i].Matricula <= R[j].Matricula : L[i].Nota <= R[j].Nota) 
         {
-            then arr[k]=L[i];
-                i =i + 1;
+            arr[k] = L[i];
+            i++;
+        } else 
+        {
+            arr[k] = R[j];
+            j++;
         }
-        else
+        k++;
+    }
+
+    while (i < n1) 
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) 
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
     }
 }
 
-int main()
+void mergeSort(pessoa arr[], int l, int r, int opcao) 
 {
-    int N;
-    cout<<"Digite o tamanho do vetor: ";
-    cin>> N;
-    cout<<"\n";
-    
-    string nomes[N];
-    cout<<"Insira os elementos do vetor: ";
-    for (int i = 0; i < N; i++) 
+    if (l < r) 
     {
-        cin >> nomes[i];
+        int m = l + (r - l) / 2;
+
+        mergeSort(arr, l, m, opcao);
+        mergeSort(arr, m + 1, r, opcao);
+
+        merge(arr, l, m, r, opcao);
     }
-    
-    cout << "Os elementos do vetor são: ";
-    for (int i = 0; i < N; ++i) 
+}
+
+void printArray(pessoa arr[], int size) 
+{
+    for (int i = 0; i < size; i++)
+        {
+        cout << "Matricula: " << arr[i].Matricula << ", Nome: " << arr[i].Nome << ", Nota: " << arr[i].Nota;
+        }    
+}
+
+int main() 
+{
+    int n;
+    cout << "Digite o tamanho do array: ";
+    cin >> n;
+
+    pessoa arr[n];
+    cout << "\nPreencha os dados: ";
+    for (int i = 0; i < n; i++) 
     {
-        cout << nomes[i]<<" ";
+        cout << "Matricula: ";
+        cin >> arr[i].Matricula;
+        cout << "Nome: ";
+        cin >> arr[i].Nome;
+        cout << "Nota: ";
+        cin >> arr[i].Nota;
     }
-    
-    selectionSort(nomes, N);
-    cout << "\nNomes depois da ordenação: ";
-    for (const string& nome : nomes) 
-    {
-        cout << nome << " ";
-    }
+
+    int opcao;
+    cout << "Escolha qual será o parâmetro de ordenação: (1 - Matricula, 2 - Nota): ";
+    cin >> opcao;
+
+    mergeSort(arr, 0, n - 1, opcao);
+
+    cout << "Os dados ordenados: ";
+    printArray(arr, n);
 
     return 0;
 }
