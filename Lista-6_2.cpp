@@ -15,22 +15,22 @@ using namespace std;
 void
 imprimirInverso (string & texto)
 {
-  stack < char >pilha;
+  stack<char>pilha;
 for (char c:texto)
 	{
-	  pilha.push (c);
+	  pilha.push(c);
 	}
 
   cout << "O texto na ordem inversa se torna: ";
-  while (!pilha.empty ())
+  while (!pilha.empty())
 	{
-	  cout << pilha.top ();
-	  pilha.pop ();
+	  cout << pilha.top();
+	  pilha.pop();
 	}
   cout << "\n";
 }
 
-bool ehLetra(char c)
+bool Letra(char c)
 {
   return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
@@ -46,12 +46,12 @@ char Minuscula(char c)
 
 bool Palindromo(const string & texto)
 {
-  stack <char>pilha;
+  stack<char>pilha;
   
   string textoLimpo;
-    for (char c : texto) 
+    for (char c:texto) 
     {
-        if (ehLetra(c)) 
+        if (Letra(c)) 
         {
             textoLimpo += Minuscula(c);
             pilha.push(Minuscula(c));
